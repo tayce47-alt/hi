@@ -1,0 +1,398 @@
+/* =============================================
+   PREMIUM CINEMATIC EXPERIENCE
+   Inspired by Apple, Stripe, Vercel, Linear
+   ============================================= */
+
+/* --- Google Font upgrade --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* --- Base overrides --- */
+html { scroll-behavior: smooth; }
+
+body, input, select, textarea {
+  font-family: 'Inter', 'Open Sans', Helvetica, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', 'Open Sans', Helvetica, sans-serif;
+  letter-spacing: -0.03em;
+}
+
+/* =============================================
+   HEADER — glassmorphism navbar
+   ============================================= */
+#header {
+  background: rgba(20, 25, 32, 0.72) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  height: 3.5em;
+  line-height: 3.5em;
+  transition: background 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+#header.scrolled {
+  background: rgba(14, 18, 24, 0.92) !important;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+
+#header h1 a {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.1em;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =============================================
+   SCROLL ANIMATION BASE STATES — CINEMATIC
+   ============================================= */
+.reveal {
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+/* large travel distances for cinematic feel */
+.reveal.from-up    { transform: translateY(110px); }
+.reveal.from-down  { transform: translateY(-80px); }
+.reveal.from-left  { transform: translateX(-140px); }
+.reveal.from-right { transform: translateX(140px); }
+.reveal.scale-in   { transform: scale(0.88); opacity: 0; }
+
+/* headings: slower + bigger travel */
+.reveal.heading {
+  transition-duration: 1.6s;
+  transform: translateY(90px);
+}
+
+/* paragraphs: slightly faster than headings, smaller travel */
+.reveal.para {
+  transition-duration: 1.5s;
+  transform: translateY(60px);
+}
+
+/* images: float in from far, very slow */
+.reveal.img-left  {
+  transition-duration: 1.8s;
+  transform: translateX(-150px);
+}
+.reveal.img-right {
+  transition-duration: 1.8s;
+  transform: translateX(150px);
+}
+
+.reveal.visible {
+  opacity: 1 !important;
+  transform: translate(0,0) scale(1) !important;
+}
+
+/* stagger delays — generous spacing for storytelling */
+.reveal.delay-0  { transition-delay: 0s; }
+.reveal.delay-1  { transition-delay: 0.15s; }
+.reveal.delay-2  { transition-delay: 0.3s; }
+.reveal.delay-3  { transition-delay: 0.45s; }
+.reveal.delay-4  { transition-delay: 0.6s; }
+.reveal.delay-5  { transition-delay: 0.75s; }
+.reveal.delay-6  { transition-delay: 0.9s; }
+.reveal.delay-7  { transition-delay: 1.05s; }
+.reveal.delay-8  { transition-delay: 1.2s; }
+
+/* =============================================
+   SECTION ONE — slide up
+   ============================================= */
+#one {
+  background: linear-gradient(160deg, #1a2332 0%, #21b2a6 100%) !important;
+  padding: 7em 0 5em;
+  position: relative;
+  overflow: hidden;
+}
+
+#one::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, rgba(33,178,166,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#one .inner { position: relative; z-index: 1; }
+
+#one header.major h2 {
+  font-size: 2em;
+  line-height: 1.3em;
+  letter-spacing: -0.04em;
+}
+
+/* icon hover micro-interaction */
+#one .icons.major li span.icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease;
+}
+#one .icons.major li span.icon:hover {
+  transform: rotate(-45deg) scale(1.12) !important;
+  box-shadow: 0 0 30px rgba(33,178,166,0.5);
+}
+
+/* =============================================
+   SECTION TWO — spotlight rows
+   ============================================= */
+#two { background: #0f1419; }
+
+.spotlight {
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.4s ease;
+}
+
+.spotlight:hover {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+/* image zoom on hover */
+.spotlight .image {
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.spotlight .image img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform;
+}
+
+.spotlight:hover .image img {
+  transform: scale(1.06) !important;
+}
+
+/* spotlight content text */
+.spotlight .content h2 {
+  font-size: 1.5em;
+  letter-spacing: -0.04em;
+  line-height: 1.3em;
+}
+
+/* =============================================
+   SECTION THREE — feature cards
+   ============================================= */
+#three {
+  background: linear-gradient(160deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+#three::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(139,92,246,0.2) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(99,102,241,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+#three .inner { position: relative; z-index: 1; }
+
+/* glassmorphism cards */
+.features li {
+  background: rgba(255,255,255,0.05) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 16px !important;
+  margin: 0.5em;
+  width: calc(50% - 1em) !important;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease,
+              background 0.4s ease !important;
+}
+
+.features li:hover {
+  transform: translateY(-8px) !important;
+  background: rgba(255,255,255,0.09) !important;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4),
+              0 0 0 1px rgba(255,255,255,0.1) !important;
+}
+
+.features li:before {
+  color: #a78bfa !important;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.features li:hover:before {
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 736px) {
+  .features li {
+    width: 100% !important;
+    margin: 0.5em 0 !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* =============================================
+   CTA SECTION — glassmorphism
+   ============================================= */
+#cta {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+#cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(33,178,166,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#cta .inner {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 3em !important;
+  max-width: 52em !important;
+}
+
+/* =============================================
+   BUTTONS — premium lift + glow
+   ============================================= */
+.button, input[type="submit"], input[type="reset"], input[type="button"], button {
+  border-radius: 10px !important;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background-color 0.3s ease !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.button:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35) !important;
+}
+
+.button:hover::after { opacity: 1; }
+
+.button:active {
+  transform: translateY(-1px) !important;
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #ed4933 0%, #c0392b 100%) !important;
+  box-shadow: 0 4px 20px rgba(237,73,51,0.35) !important;
+}
+
+.button.primary:hover {
+  box-shadow: 0 12px 32px rgba(237,73,51,0.5) !important;
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+#footer {
+  background: #080c10 !important;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+#footer .icons a {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.3s ease !important;
+}
+
+#footer .icons a:hover {
+  transform: translateY(-4px) scale(1.15);
+  color: #21b2a6 !important;
+}
+
+/* =============================================
+   PARALLAX WRAPPER
+   ============================================= */
+.parallax-bg {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* =============================================
+   BANNER — premium hero
+   ============================================= */
+#banner .inner {
+  position: relative;
+  z-index: 2;
+}
+
+#banner h2 {
+  font-size: 2.5em !important;
+  letter-spacing: -0.05em !important;
+  line-height: 1.1em !important;
+  font-weight: 900 !important;
+}
+
+#banner p {
+  font-size: 1em;
+  opacity: 0.85;
+  letter-spacing: 0.05em;
+}
+
+/* "Learn More" arrow bounce */
+#banner .more {
+  animation: bounce 2.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* =============================================
+   SMOOTH SECTION TRANSITIONS
+   ============================================= */
+section, footer {
+  position: relative;
+}
+
+/* subtle top divider glow between sections */
+#one::after, #three::after, #cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  pointer-events: none;
+}
+
+/* =============================================
+   SCROLLBAR — premium thin
+   ============================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0e14; }
+::-webkit-scrollbar-thumb {
+  background: rgba(33,178,166,0.5);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(33,178,166,0.8); }
+
+/* =============================================
+   SELECTION
+   ============================================= */
+::selection {
+  background: rgba(33,178,166,0.35);
+  color: #fff;
+}
